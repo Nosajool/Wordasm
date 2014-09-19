@@ -2,5 +2,7 @@
   "name": "rye50",
   "version": "0.0.1",
   "description": "play rye 50",
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.9.4"
+  }
 }
