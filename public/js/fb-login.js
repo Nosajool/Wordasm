@@ -2,6 +2,7 @@
   var userDatas = []; 
   var name = '';
   var id = 0;
+  var color = "rgb(0,0,0)";
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -80,10 +81,22 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
 
-        socket.emit('new user login', response.name, response.id);
+        color = randomColors();
+        console.log(color);
+        socket.emit('new user login', response.name, response.id, color);
         name = response.name;
         id = response.id;
+
     });
+  }
+
+  function randomColors(){
+    var letters = '0123456789ABCDEF'.split('');
+    var color2 = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color2 += letters[Math.floor(Math.random() * 16)];
+    }
+    return color2;
   }
 
 function logOut(){

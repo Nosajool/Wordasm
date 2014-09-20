@@ -3,7 +3,8 @@ var countUsers = 0;
 socket.on('update userlist', function(users){
 	$('.users').empty();
 	for(var i = 0; i < users.length; i++){
-		$('.users').append($('<li>').text(users[i].name));
+		var message = "<li><span style = 'color:" + users[i].color + "'>" + users[i].name + "</span></li>";
+		$('.users').append(message);
 	}
 	for(var i = countUsers; i>=0; i--){
 		var eleId = "#login"+i;

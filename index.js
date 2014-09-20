@@ -8,9 +8,10 @@ app.get('/', function(req, res){
   res.sendfile('index.html');
 });
 
-function User (id, name) {
+function User (id, name, color) {
   this.id = id;
   this.name = name;
+  this.color = color;
   this.getId = function(){
     return this.id;
   }
@@ -41,9 +42,10 @@ io.on('connection', function(socket){
       io.emit("user data", users);
   });
 
-  socket.on('new user login', function(name, id){
+  socket.on('new user login', function(name, id, color){
     if(userExists(name) < 0){
-      users.push(new User(id, name));
+      users.push(new User(id, name, color));
+      console.log("Color: "+users[0].color);
       console.log("new user added: " + name);
       io.emit('update userlist', users);
     }
@@ -66,9 +68,16 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
-  socket.on('chat message', function(msg, name){
+  socket.on('chat message', function(msg, name, id){
+    var color = "#000000";
+    for(var i=0;i<users.length;i++){
+      console.log(users[i].name + users[i].id + users[i].color);
+      if(users[i].id == id){
+          color = users[i].color;
+      }
+    }
     console.log(name + ": " + msg);
-    io.emit('chat message', msg, name);
+    io.emit('chat message', msg, name, color);
   });
 });
 
