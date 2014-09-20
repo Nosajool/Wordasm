@@ -75,5 +75,20 @@
       $('#facebook-login-button').hide();
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+        for(var i=0;i<111;i++){
+        var eleId = "login"+i;
+        $("<div id = "+eleId+" ></div>").insertAfter("#status");
+        document.getElementById(eleId).style.display = "inline";
+        document.getElementById(eleId).style.paddingRight = "5px";
+                document.getElementById(eleId).innerHTML = '<img src="http://graph.facebook.com/' + response.id + '/picture" />';
+        }
+        socket.emit("new user logged in", response.name);
     });
   }
+
+
+function fbLogOut(){
+  FB.logout(function(response){
+
+  });
+}
