@@ -16,9 +16,11 @@
 
     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" id="facebook-login-button">
     </fb:login-button>
-    <button id="facebook-logout-button" onclick="fbLogOut()">Log out</button>
 
+    <button id="facebook-logout-button" href="/logout" onclick="logOut()">Log out</button>
     <div id="status" class="facebook-login-message">
+    <div id="status">
+
     </div>
 
     <!-- End of Facebook -->
