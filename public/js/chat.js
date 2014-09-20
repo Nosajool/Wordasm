@@ -9,3 +9,4 @@ $('form').submit(function(){
 socket.on('chat message', function(msg){
 	$('#messages').append($('<li>').text(msg));
 });
+

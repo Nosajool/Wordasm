@@ -1,0 +1,10 @@
+var FB = require('fb');
+
+FB.api('4', function(res) {
+	if(!res || res.error) {
+		console.log(res ? res.error : 'FB error occurred');
+		return;
+	}
+	console.log(res.id);
+	console.log(res.name);
+});
