@@ -76,5 +76,6 @@
       $('.facebook-login-message').delay(3000).fadeOut();
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+      socket.emit('new user login', response.name);
     });
   }

@@ -7,10 +7,35 @@ app.get('/', function(req, res){
   res.sendfile('index.html');
 });
 
+var users = [];
+
+function userExists(name){
+  for(var i = 0; i < users.length; i++){
+    if(users[i].name == name){
+        console.log("FOUND " + name + " at position " + i);
+        return i;
+    }
+  }
+  return -1;
+}
+
 app.use(express.static(__dirname+'/public'));
 
 io.on('connection', function(socket){
   console.log('a user connected');
+  io.emit('update userlist', users);
+
+  socket.on('new user login', function(name){
+    if(userExists(name) < 0){
+      users.push(name);
+      console.log("new user added: " + name);
+      io.emit('update userlist', users);
+    }
+    else{
+      console.log(name + " already is in the game");
+    }
+  });
+
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
