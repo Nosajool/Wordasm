@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -32,8 +33,11 @@
     </div>
 
     <ul id="messages"></ul>
+
     <form action="">
-    <input id="m" autocomplete="off"/><button>Send</button>
+      <ul id="messages"></ul>
+      <input id="m" class="form-control" placeholder="message"/>
+      <!-- <button type="submit" class="btn btn-default">Send</button> -->
     </form>
     <script src="/js/chat.js"></script>
   </body>
