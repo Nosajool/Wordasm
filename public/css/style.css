@@ -5,39 +5,52 @@
 }
 
 form {
-	padding: 3px;
-	position: fixed;
+	position: absolute;
+	width: 100%;
 	bottom: 0;
-	width: 30%;
-	margin: 5% 5% 5% 5%;
 }
 
-form input {
+input {
 	border: 0;
 	padding: 10px;
 	margin-right: .5%;
 }
 
-form button {
-	width: 9%;
-	background: rgb(130, 224, 255);
-	border: none;
-	padding: 10px;
+.user-icons {
+	position: relative;
+	width: 30%;
 }
 
-#messages {
+#user-container {
+	position: fixed;
+	width: 30%;
+	height: 30%;
+	top: 10%;
+	left: 5%;
+}
+
+#chat-container {
+	overflow-y: hidden;
+	position: fixed;
+	width: 30%;
+	height: 60%;
+	left: 5%;
+	bottom: 10%;
+}
+
+.messages {
 	list-style-type: none;
 	margin: 0; padding: 0;
 }
 
-#messages li {
+.messages li {
 	padding: 5px 10px;
 }
 
-#messages li:nth-child(odd) {
+.messages li:nth-child(odd) {
 	background: #eee;
 }
 
-#messages li:nth-child(even) {
+.messages li:nth-child(even) {
 	background: #fff;
 }
