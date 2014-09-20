@@ -2,13 +2,15 @@ var countUsers = 0;
 var socket = io();
 
 $('form').submit(function(){
-	socket.emit('chat message', $('#m').val());
-	$('#m').val('');
+	FB.api('/me', function(response) {
+		socket.emit('chat message', $('#m').val(), response.name);
+		$('#m').val('');	    
+	});
 	return false;
 });
 
-socket.on('chat message', function(msg){
-	$('#messages').append($('<li>').text(msg));
+socket.on('chat message', function(msg, name){
+	$('#messages').append($('<li>').text(name + ": " + msg));
 });
 
 socket.on('update userlist', function(users){
