@@ -7,10 +7,6 @@ app.get('/', function(req, res){
   res.sendfile('index.html');
 });
 
-// ['css'].forEach(function(dir) {
-//   app.use('/'+dir, express.static(__dirname+'/'+dir));
-// });
-
 app.use(express.static(__dirname+'/public'));
 
 io.on('connection', function(socket){

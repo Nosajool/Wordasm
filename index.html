@@ -7,6 +7,15 @@
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   </head>
   <body>
+    <script src="/js/fb-setup.js"></script>
+    <script src="/js/fb-login.js"></script>
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+
+    <div id="status">
+    </div>
+    
     <ul id="messages"></ul>
     <form action="">
     <input id="m" autocomplete="off"/><button>Send</button>
