@@ -10,11 +10,40 @@
     <script src="/js/fb-setup.js"></script>
     <script src="/js/fb-login.js"></script>
 
+
+
+    <!-- Facebook -->
+
     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" id="facebook-login-button">
     </fb:login-button>
+<<<<<<< HEAD
     <button id="facebook-logout-button" onclick="fbLogOut()">Log out</button>
     <div id="status">
     </div>
+=======
+
+    <div id="status" class="facebook-login-message">
+    </div>
+
+    <!-- End of Facebook -->
+
+
+    <div>
+      Users:
+      <ul id="users"></ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    Messages:
+>>>>>>> ae2f531aebd230f747533b4a48f7eca03da96f5e
     <ul id="messages"></ul>
     <form action="">
     <input id="m" autocomplete="off"/><button>Send</button>

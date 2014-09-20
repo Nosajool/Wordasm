@@ -73,6 +73,7 @@
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       $('#facebook-login-button').hide();
+      $('.facebook-login-message').delay(3000).fadeOut();
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
         for(var i=0;i<111;i++){
@@ -82,7 +83,7 @@
         document.getElementById(eleId).style.paddingRight = "5px";
                 document.getElementById(eleId).innerHTML = '<img src="http://graph.facebook.com/' + response.id + '/picture" />';
         }
-        socket.emit("new user logged in", response.name);
+      socket.emit('new user login', response.name);
     });
   }
 
