@@ -1,4 +1,5 @@
 // This is called with the results from from FB.getLoginStatus().
+  var userDatas = []; 
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -76,14 +77,9 @@
       $('.facebook-login-message').delay(3000).fadeOut();
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
-        for(var i=0;i<111;i++){
-        var eleId = "login"+i;
-        $("<div id = "+eleId+" ></div>").insertAfter("#status");
-        document.getElementById(eleId).style.display = "inline";
-        document.getElementById(eleId).style.paddingRight = "5px";
-                document.getElementById(eleId).innerHTML = '<img src="http://graph.facebook.com/' + response.id + '/picture" />';
-        }
-      socket.emit('new user login', response.name);
+
+        socket.emit('new user login', response.name, response.id);
+        
     });
   }
 

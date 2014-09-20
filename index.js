@@ -8,6 +8,17 @@ app.get('/', function(req, res){
   res.sendfile('index.html');
 });
 
+function User (id, name) {
+  this.id = id;
+  this.name = name;
+  this.getId = function(){
+    return this.id;
+  }
+  this.getName = function(){
+    return this.name;
+  }
+}
+
 var users = [];
 
 function userExists(name){
@@ -26,9 +37,13 @@ io.on('connection', function(socket){
   console.log('a user connected');
   io.emit('update userlist', users);
 
-  socket.on('new user login', function(name){
+  socket.on('get users', function(){
+      io.emit("user data", users);
+  });
+
+  socket.on('new user login', function(name, id){
     if(userExists(name) < 0){
-      users.push(name);
+      users.push(new User(id, name));
       console.log("new user added: " + name);
       io.emit('update userlist', users);
     }
