@@ -52,17 +52,6 @@ io.on('connection', function(socket){
     }
   });
 
-  socket.on('user logout', function(name, id){
-      for(var i = 0; i<users.length; i++){
-          if(users[i].id == id){
-              users.splice(i, 1);
-              break;
-          }
-      }
-      console.log("user removed: "+name);
-      io.emit('update userlist', users);
-  });
-
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });

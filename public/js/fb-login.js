@@ -1,7 +1,5 @@
 // This is called with the results from from FB.getLoginStatus().
   var userDatas = []; 
-  var name = '';
-  var id = 0;
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -58,8 +56,7 @@
     statusChangeCallback(response);
   });
 
-};
-
+  };
 
   // Load the SDK asynchronously
   (function(d, s, id) {
@@ -82,23 +79,13 @@
         'Thanks for logging in, ' + response.name + '!';
 
         socket.emit('new user login', response.name, response.id);
-        name = response.name;
-        id = response.id;
+        
     });
   }
-  function logOut(){
-    console.log("logged out");
-    $('#facebook-login-button').show();
-    $('.facebook-login-message').fadeIn();
-    document.getElementById('status').innerHTML =
-        "You're successfully logged out!";
-    $('#facebook-logout-button').hide();
-    console.log("Successfully logged out: "+ name);
-    socket.emit('user logout', name, id);
-    FB.logout(function(response) {
-     //console.log("Successfully logged out: "+response.name);
-     //socket.emit('user logout', response.name, response.id);
-  });
-  }
-  
 
+
+function fbLogOut(){
+  FB.logout(function(response){
+
+  });
+}
