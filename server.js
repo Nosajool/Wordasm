@@ -9,6 +9,8 @@ var dictionaryFile = require("./dictionary");
 
 var dictionary = dictionaryFile.dictionary();
 var dictionaryArr = dictionaryFile.dictionaryArr();
+var wordArr; 
+var inputArr;
 
 app.get('/', function(req, res){
   res.sendfile('index.html');
@@ -28,7 +30,7 @@ function scrambleWord(){
   var word = randomWord();
   console.log(word);
   var len = word.length;
-  var wordArr = word.split("");
+  wordArr = word.split("");
   var usedInt = [];
   var newWord = [];
 
@@ -115,6 +117,44 @@ io.on('connection', function(socket){
     }
     console.log(name + ": " + msg);
     io.emit('chat message', msg, name, color);
+  });
+
+  socket.on('checkValidity', function(msg){
+     var msgArr = msg.split("");
+     var firstCheck;
+     var thirdCheck;
+     var p;
+     var isValid;
+     inputArr.push(msg);
+     //first Check: if the word is made from scrambled words
+     for(var i=0;i<msgArr.length;i++){
+        p=wordArr.indexOf(msgArr[i]);
+        if (p==-1){
+          firstCheck = false;
+          break;
+        }
+        else{
+          wordArr[p]="";
+        }
+        firstCheck = true;
+     }   
+    //second check: checking if the word is in dictionary or not
+    if(firstCheck == true){
+      var secondCheck = dictionary.has(msg); 
+    }
+    if (firstCheck == false || secondCheck ==false){
+      isValid = false;
+    }
+    //third check: if the word already exists
+    if (firstCheck == true && secondCheck == true){
+      thirdCheck = inputArr.has(msg);
+      if (thirdCheck==false){
+        isValid = false;
+      } 
+    }
+    isValid = true;
+    console.log(msg + "'s validity? = " + isValid);
+    io.emit('checkValidity', msg, isValid);
   });
 });
 
