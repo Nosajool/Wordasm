@@ -10,7 +10,6 @@ var score;
 
 var dictionaryFile = require("./dictionary");
 //var timerFile = require(".js/timer");
-var time = 0;
 var dictionary = dictionaryFile.dictionary();
 var dictionaryArr = dictionaryFile.dictionaryArr();
 var wordArr; 
