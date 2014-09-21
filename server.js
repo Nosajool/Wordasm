@@ -100,9 +100,9 @@ setInterval(function () {
   if (time == 0) { 
     console.log("updating word");
     updateWord();
+    inputArr = [];   
     io.emit('update word', word, wordArr, realWord);
-    console.log("clear input array");
-    inputArr = [];    
+    console.log("clear input array"); 
     time = MAX_TIME;
   }
   else{   
