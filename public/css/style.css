@@ -4,29 +4,43 @@
 	box-sizing: border-box;
 }
 
+body {
+	background-color: #323;
+}
+
 form {
 	position: absolute;
 	width: 100%;
 	bottom: 0;
 }
 
+ul {
+	list-style-type: none;
+}
+
 input {
 	border: 0;
 	padding: 10px;
-	margin-right: .5%;
 }
 
 .user-icons {
 	position: relative;
-	width: 30%;
+	height: 100%;
+	width: auto;
+	border-radius: 6px;
+	margin-right: 10px;
 }
 
 #user-container {
 	position: fixed;
 	width: 30%;
-	height: 30%;
+	height: 12%;
 	top: 10%;
 	left: 5%;
+	border-radius: 10px;
+	margin: 10px 10px;
+	padding: 10px 10px;
+	background-color: #fff;
 }
 
 #chat-container {
@@ -36,11 +50,47 @@ input {
 	height: 60%;
 	left: 5%;
 	bottom: 10%;
+	margin: 10px 10px;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+#card-container {
+	position: fixed;
+	height: 36%;
+	left: 38%;
+	right: 5%;
+	top: 10%;
+	margin: 10px 10px;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+#hand-container {
+	position: fixed;
+	height: 36%;
+	left: 38%;
+	right: 5%;
+	bottom: 10%;
+	margin: 10px 10px;
+	border-radius: 10px;
+	padding: 20px 20px;
+	background-color: #fff;
+}
+
+.hand {
+	margin-right: 1%;
+	margin-left: 1%;
+	width: 14%;
+	height: 100%;
+	src: "http://img4.wikia.nocookie.net/__cb20130830125537/smallville/images/thumb/0/06/Question-mark.jpg/480px-Question-mark.jpg";
 }
 
 .messages {
 	list-style-type: none;
-	margin: 0; padding: 0;
+	margin: 0;
+	padding: 0;
+	border-radius: 10px;
 }
 
 .messages li {

@@ -10,11 +10,12 @@ socket.on('update userlist', function(users){
 		var eleId = "#login"+i;
 		$(eleId).remove();
 	}
+	$("#user-container").empty();
 	for(var i=0;i<users.length;i++){
 		countUsers++;
-        var eleId = "login"+i;
-        $("<div class='user-icons' id=" + eleId + "></div>").insertAfter("#status");
-		document.getElementById(eleId).innerHTML = '<img src="http://graph.facebook.com/' + users[i].id + '/picture" />';
+        // var eleId = "login"+i;
+        // $("<div id=" + eleId + "></div>").insertAfter("#status");
+		// document.getElementById(eleId).innerHTML = ;
+		$('#user-container').append('<img name="'+users[i].name+'"class="user-icons" src="http://graph.facebook.com/' + users[i].id + '/picture">');
     }
 });
-
