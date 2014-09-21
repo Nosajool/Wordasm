@@ -1,12 +1,13 @@
 
 var socket = io();
+var total = 0;
 
 $('form').submit(function(){
 	var message = $('#m');
 	if (message.val() != '') {
 		FB.api('/me', function(response){
-			socket.emit('chat message', message.val(), response.name, response.id);
-			socket.emit('checkValidity', message.val());
+			socket.emit('chat message', message.val(), response.name, response.id, score);
+			socket.emit('checkValidity', message.val(), score);
 			message.val('');			
 		});
 	}
@@ -18,6 +19,8 @@ socket.on('chat message', function(msg, name, color){
 	$('.messages').append(message);
 });
 
-socket.on('output word', function(msg){
+socket.on('output word', function(msg, score){
 	$("#word-list").append("<li style='color: "+color+"'>"+msg+"</li>");
+	//total = score + total;
+	//$('.score').text(total);
 });

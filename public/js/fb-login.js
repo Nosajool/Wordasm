@@ -2,6 +2,7 @@
   var userDatas = []; 
   var name = '';
   var id = 0;
+  var score;
   var color = "rgb(0,0,0)";
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -81,7 +82,7 @@
 
         color = randomColors();
         console.log(color);
-        socket.emit('new user login', response.name, response.id, color);
+        socket.emit('new user login', response.name, response.id, color, score);
         name = response.name;
         id = response.id;
 

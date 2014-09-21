@@ -139,3 +139,14 @@ input {
 .messages li:nth-child(even) {
 	background: #fff;
 }
+
+.score {
+	position: fixed;
+	width: 30px;
+	height: 40px;
+	/*background-color: #fff;*/
+	color: #fff;
+	margin-left: 70px;
+	margin-top: 5px;
+	font-size: 2em;
+}

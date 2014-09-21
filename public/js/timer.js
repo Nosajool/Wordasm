@@ -1,5 +1,6 @@
 var maxTime = 400;
 var time = maxTime;
+var socket=io();
 
 setInterval(function () {
 	time--;
@@ -11,4 +12,5 @@ function reset() {
 	time = maxTime;
 	$("#word-list").empty();
 	socket.emit('update word');
+	socket.emit('time up');
 }

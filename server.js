@@ -6,9 +6,11 @@ var users = [];
 var word = "";
 var wordArr = [];
 var realWord = "";
+var score;
 
 var dictionaryFile = require("./dictionary");
-
+//var timerFile = require(".js/timer");
+var time = 0;
 var dictionary = dictionaryFile.dictionary();
 var dictionaryArr = dictionaryFile.dictionaryArr();
 var wordArr; 
@@ -63,10 +65,11 @@ function updateWord(){
   word = combineWord(wordArr);
 }
 
-function User (id, name, color) {
+function User (id, name, color, score) {
   this.id = id;
   this.name = name;
   this.color = color;
+  this.score = score;
   this.getId = function(){
     return this.id;
   }
@@ -98,9 +101,9 @@ io.on('connection', function(socket){
       io.emit("user data", users);
   });
 
-  socket.on('new user login', function(name, id, color){
+  socket.on('new user login', function(name, id, color, score){
     if(userExists(name) < 0){
-      users.push(new User(id, name, color));
+      users.push(new User(id, name, color, score));
       console.log("Color: "+users[0].color);
       console.log("new user added: " + name);
       io.emit('update userlist', users);
@@ -124,7 +127,7 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
-  socket.on('chat message', function(msg, name, id){
+  socket.on('chat message', function(msg, name, id, score){
     var color = "#000000";
     for(var i=0;i<users.length;i++){
       console.log(users[i].name + users[i].id + users[i].color);
@@ -133,7 +136,7 @@ io.on('connection', function(socket){
       }
     }
     console.log(name + ": " + msg);
-    io.emit('chat message', msg, name, color);
+    io.emit('chat message', msg, name, color, score);
   });
 
   socket.on('update word', function(){
@@ -142,14 +145,22 @@ io.on('connection', function(socket){
     io.emit('update word', word, wordArr, realWord);
   });
 
-  socket.on('checkValidity', function(msg){
+  socket.on('time up', function(){
+      console.log("clear input array");
+      inputArr = [];
+  });
+
+  socket.on('checkValidity', function(msg, score){
      console.log(inputArr);
+     var currentWord = realWord;
+
      var secondArr = realWord.split("");
      console.log(wordArr);
      var msgArr = msg.split("");
      var firstCheck;
      var thirdCheck;
      var p;
+     var count;
      //first Check: if the word is made from scrambled words
      for(var i=0;i<msgArr.length;i++){
         p=secondArr.indexOf(msgArr[i]);
@@ -180,8 +191,9 @@ io.on('connection', function(socket){
       }
       inputArr.push(msg);
     }
+    score = score + 1;
     console.log(msg + "is valid");
-    io.emit('output word', msg);
+    io.emit('output word', msg, score);
   });
 });
 
