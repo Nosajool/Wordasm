@@ -166,7 +166,7 @@ io.on('connection', function(socket){
     io.emit('chat message', msg, name, color, score);
   });
 
-  socket.on('checkValidity', function(msg, score){
+  socket.on('checkValidity', function(msg, score, iden){
      console.log(inputArr);
      var currentWord = realWord;
 
@@ -207,9 +207,15 @@ io.on('connection', function(socket){
       }
       inputArr.push(msg);
     }
+    var wordColor = '#000000';
     score = score + 1;
     console.log(msg + "is valid");
-    io.emit('output word', msg, score);
+    for(var i=0;i<users.length;i++){
+      if(users[i].id == iden){
+          wordColor = users[i].color;
+      }
+    }
+    io.emit('output word', msg, score, wordColor);
   });
 });
 
