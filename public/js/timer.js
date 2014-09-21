@@ -1,4 +1,4 @@
-var maxTime = 400;
+var maxTime = 200;
 var time = maxTime;
 var socket=io();
 
