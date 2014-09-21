@@ -21,6 +21,7 @@ socket.on('chat message', function(msg, name, color){
 
 socket.on('output word', function(msg, score,color){
 	$("#word-list").append("<li style='color: "+color+"'>"+msg+"</li>");
+	$(".messages").append("<li><b>" + msg + "</b> is correct! </li>");
 	//total = score + total;
 	//$('.score').text(total);
 });
