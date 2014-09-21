@@ -10,4 +10,5 @@ setInterval(function () {
 function reset() {
 	time = maxTime;
 	$("#word-list").empty();
+	socket.emit('update word');
 }

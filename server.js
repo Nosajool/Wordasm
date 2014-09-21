@@ -3,7 +3,9 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var users = [];
-
+var word = "";
+var wordArr = [];
+var realWord = "";
 
 var dictionaryFile = require("./dictionary");
 
@@ -26,6 +28,7 @@ function randomWord(){
 
 function scrambleWord(){
   var word = randomWord();
+  realWord = word;
   console.log(word);
   var len = word.length;
   var wordArr = word.split("");
@@ -38,11 +41,24 @@ function scrambleWord(){
       var randInt = Math.floor(Math.random()*len);
     }
 
-    newWord.push(wordArr[randomInt]);
-    usedInt.push(randomInt);
+    newWord.push(wordArr[randInt]);
+    usedInt.push(randInt);
 
   }
   return newWord;
+}
+
+function combineWord(wordArr){
+  var word = "";
+  for(var i=0;i<wordArr.length;i++){
+    word += wordArr[i]+" ";
+  }
+  return word;
+}
+
+function updateWord(){
+  wordArr = scrambleWord();
+  word = combineWord(wordArr);
 }
 
 function User (id, name, color) {
@@ -70,6 +86,7 @@ function userExists(name){
 }
 
 app.use(express.static(__dirname+'/public'));
+//io.emit('update word', word, wordArr);
 
 io.on('connection', function(socket){
   console.log('a user connected');
@@ -115,6 +132,11 @@ io.on('connection', function(socket){
     }
     console.log(name + ": " + msg);
     io.emit('chat message', msg, name, color);
+  });
+  socket.on('update word', function(){
+    console.log("updating word");
+    updateWord();
+    io.emit('update word', word, wordArr, realWord);
   });
 });
 
