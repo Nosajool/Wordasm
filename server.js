@@ -16,6 +16,9 @@ var dictionaryArr = dictionaryFile.dictionaryArr();
 var wordArr; 
 var inputArr = [];
 
+var MAX_TIME = 200;
+var time = MAX_TIME;
+
 app.get('/', function(req, res){
   res.sendfile('index.html');
 });
@@ -90,10 +93,32 @@ function userExists(name){
   return -1;
 }
 
+
+setInterval(function () {
+  if (time == 0) { 
+    console.log("updating word");
+    updateWord();
+    io.emit('update word', word, wordArr, realWord);
+    console.log("clear input array");
+    inputArr = [];    
+    time = MAX_TIME;
+  }
+  else{   
+    time--;
+  }
+}, 100);
+
 app.use(express.static(__dirname+'/public'));
 //io.emit('update word', word, wordArr);
 
 io.on('connection', function(socket){
+
+  socket.on('sync timer', function(){
+    console.log("sync timer request");
+    io.emit('receive sync timer', time);
+  });
+
+  
   console.log('a user connected');
   io.emit('update userlist', users);
 
@@ -137,17 +162,6 @@ io.on('connection', function(socket){
     }
     console.log(name + ": " + msg);
     io.emit('chat message', msg, name, color, score);
-  });
-
-  socket.on('update word', function(){
-    console.log("updating word");
-    updateWord();
-    io.emit('update word', word, wordArr, realWord);
-  });
-
-  socket.on('time up', function(){
-      console.log("clear input array");
-      inputArr = [];
   });
 
   socket.on('checkValidity', function(msg, score){

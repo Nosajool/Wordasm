@@ -1,16 +1,18 @@
-var maxTime = 400;
-var time = maxTime;
+var time = 0;
 var socket=io();
 
 setInterval(function () {
-	time--;
-	if (time == 0) { reset(); }
-	$("#timer").text((time / 10).toFixed(1) + "s");
+	if (time == 0) { 
+		console.log("client time is 0");
+		socket.emit("sync timer");
+	}
+	else{		
+		time--;
+		$("#timer").text((time / 10).toFixed(1) + "s");
+	}
 }, 100);
 
-function reset() {
-	time = maxTime;
-	$("#word-list").empty();
-	socket.emit('update word');
-	socket.emit('time up');
-}
+socket.on("receive sync timer", function(serverTime){
+	console.log("set time = serverTime");
+	time = serverTime;
+});
