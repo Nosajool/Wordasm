@@ -113,10 +113,10 @@ app.use(express.static(__dirname+'/public'));
 //io.emit('update word', word, wordArr);
 
 io.on('connection', function(socket){
+  io.emit('update word', word, wordArr, realWord);
 
   socket.on('sync timer', function(){
     console.log("sync timer request");
-    io.emit('update word', word, wordArr, realWord);
     io.emit('receive sync timer', time);
   });
 
