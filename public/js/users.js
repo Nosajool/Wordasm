@@ -16,6 +16,6 @@ socket.on('update userlist', function(users){
         // var eleId = "login"+i;
         // $("<div id=" + eleId + "></div>").insertAfter("#status");
 		// document.getElementById(eleId).innerHTML = ;
-		$('#user-container').append('<img name="'+users[i].name+'"class="user-icons" src="http://graph.facebook.com/' + users[i].id + '/picture">');
+		$('#user-container').append('<img name="'+users[i].name+'"class="user-icons" style="border: 5px solid '+users[i].color+'" src="http://graph.facebook.com/' + users[i].id + '/picture">');
     }
 });

@@ -91,10 +91,10 @@
   }
 
   function randomColors(){
-    var letters = '0123456789ABCDEF'.split('');
+    var letters = '468AC'.split('');
     var color2 = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color2 += letters[Math.floor(Math.random() * 16)];
+    for (var i = 0; i < 3; i++ ) {
+        color2 += letters[Math.floor(Math.random() * 5)];
     }
     return color2;
   }

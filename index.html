@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>Wordasm</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/socket.io/socket.io.js"></script>
@@ -11,17 +11,13 @@
     <script src="/js/fb-setup.js"></script>
     <script src="/js/fb-login.js"></script>
     <script src="/js/timer.js"></script>
-    
+
     <!-- Facebook -->
 
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" id="facebook-login-button">
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState()" id="facebook-login-button">
     </fb:login-button>
 
-    <button id="facebook-logout-button" href="/logout" onclick="logOut()">Log out</button>
-
-    <div id="status" class="facebook-login-message">
-    
-    </div>
+    <button id="facebook-logout-button" href="/logout" onclick="logOut()" class="btn btn-default">Log Out</button>
 
     <!-- End of Facebook -->
 

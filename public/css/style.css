@@ -5,7 +5,7 @@
 }
 
 body {
-	background-color: #323;
+	background-color: #435;
 }
 
 form {
@@ -29,8 +29,6 @@ input {
 	width: auto;
 	border-radius: 6px;
 	margin-right: 10px;
-	outline-width: 2px;
-	outline-color: #000;
 }
 
 .panel {
@@ -44,6 +42,7 @@ input {
 	top: 60%;
 	text-align: center;
 	font-size: 400%;
+	color: #435;
 }
 
 #word-list {
@@ -93,6 +92,18 @@ input {
 	right: 5%;
 	height: 12%;
 	top: 10%;
+}
+
+#facebook-login-button {
+	position: fixed;
+	left: 12%;
+	bottom: 4%;
+}
+
+#facebook-logout-button {
+	position: fixed;
+	left: 5%;
+	bottom: 4%;
 }
 
 .messages {
