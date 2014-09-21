@@ -68,6 +68,8 @@ function updateWord(){
   word = combineWord(wordArr);
 }
 
+updateWord();
+
 function User (id, name, color, score) {
   this.id = id;
   this.name = name;
@@ -115,10 +117,11 @@ io.on('connection', function(socket){
 
   socket.on('sync timer', function(){
     console.log("sync timer request");
+    io.emit('update word', word, wordArr, realWord);
     io.emit('receive sync timer', time);
   });
 
-  
+
   console.log('a user connected');
   io.emit('update userlist', users);
 

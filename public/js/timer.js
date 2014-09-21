@@ -12,6 +12,10 @@ setInterval(function () {
 	}
 }, 100);
 
+setInterval(function(){
+	socket.emit("sync timer");
+}, 1000);
+
 socket.on("receive sync timer", function(serverTime){
 	console.log("set time = serverTime");
 	time = serverTime;
