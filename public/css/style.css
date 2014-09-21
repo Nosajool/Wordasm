@@ -106,6 +106,13 @@ input {
 	bottom: 4%;
 }
 
+#status {
+	position: fixed;
+	left: 18%;
+	bottom: 4%;
+	color: #fff;
+}
+
 .messages {
 	list-style-type: none;
 	margin: 0;
