@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>Wordasm</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/socket.io/socket.io.js"></script>
@@ -12,43 +12,43 @@
     <script src="/server/randomWord.js"></script>
     <script src="/js/fb-setup.js"></script>
     <script src="/js/fb-login.js"></script>
-
-
+    <script src="/js/timer.js"></script>
 
     <!-- Facebook -->
 
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" id="facebook-login-button">
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState()" id="facebook-login-button">
     </fb:login-button>
 
-    <button id="facebook-logout-button" href="/logout" onclick="logOut()">Log out</button>
-
-    <div id="status" class="facebook-login-message">
-    
-    </div>
+    <button id="facebook-logout-button" href="/logout" onclick="logOut()" class="btn btn-default">Log Out</button>
+    <div id="status" class="facebook-login-message"></div>
 
     <!-- End of Facebook -->
 
-
-    <div id="user-container">
-      <!-- Users: -->
-      <!-- <ul class="users"></ul> -->
+    <div class="panel" id="user-container">
+    <!-- Users: -->
+    <!-- <ul class="users"></ul> -->
     </div>
-    <div id="chat-container">
+    <div class="panel" id="chat-container">
       <form action="">
         <ul class="messages"></ul>
         <input id="m" class="form-control" placeholder="message"/>
       </form>
     </div>
-    <div id='card-container'>
+    <div class="panel" id='game-container'>
+      <div id="big-word">ABCDEF</div>
+      <ul id="word-list">
+        <li>sadkjfsad</li>
+        <li>sadkjfsad</li>
+        <li>sadkjfsad</li>
+        <li>sadkjfsad</li>
+        <li>sadkjfsad</li>
+        <li>sadkjfsad</li>
+      </ul>
     </div>
-    <div id='hand-container'>
-      <img class='hand'></img>
-      <img class='hand'></img>
-      <img class='hand'></img>
-      <img class='hand'></img>
-      <img class='hand'></img>
-      <img class='hand'></img>
+    <div id='time-container'>
+      <div id="timer">22.3s</div>
     </div>
+    
     <script src="/js/chat.js"></script>
     <script src="/js/users.js"></script>
   </body>
