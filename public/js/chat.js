@@ -13,7 +13,7 @@ $('form').submit(function(){
 });
 
 socket.on('chat message', function(msg, name, color){
-	var message = "<li><span style = 'color:" + color + "'>" + name + "</span>" + ": " + msg + "</li>";
+	var message = "<li><span style = 'color:" + color + "'><b>" + name + "</b></span>" + ": " + msg + "</li>";
 	$('.messages').append(message);
 });
 

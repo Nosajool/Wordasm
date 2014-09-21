@@ -29,61 +29,70 @@ input {
 	width: auto;
 	border-radius: 6px;
 	margin-right: 10px;
+	outline-width: 2px;
+	outline-color: #000;
+}
+
+.panel {
+	position: fixed;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+#big-word {
+	position: relative;
+	top: 60%;
+	text-align: center;
+	font-size: 400%;
+}
+
+#word-list {
+	font-size: 140%;
+	text-align: center;
+	position: relative;
+	columns: 2;
+	-webkit-columns: 2;
+	-moz-columns: 2;
+}
+
+#timer {
+	position: fixed;
+	left: 78%;
+	font-size: 400%;
+	bottom: 47%;
+	color: #fff;
 }
 
 #user-container {
-	position: fixed;
 	width: 30%;
 	height: 12%;
 	top: 10%;
 	left: 5%;
-	border-radius: 10px;
-	margin: 10px 10px;
 	padding: 10px 10px;
-	background-color: #fff;
 }
 
 #chat-container {
 	overflow-y: hidden;
-	position: fixed;
 	width: 30%;
 	height: 60%;
 	left: 5%;
 	bottom: 10%;
-	margin: 10px 10px;
-	border-radius: 10px;
-	background-color: #fff;
+	padding: 0px;
 }
 
-#card-container {
-	position: fixed;
-	height: 36%;
+#game-container {
 	left: 38%;
-	right: 5%;
-	top: 10%;
-	margin: 10px 10px;
-	border-radius: 10px;
-	background-color: #fff;
-}
-
-#hand-container {
-	position: fixed;
-	height: 36%;
-	left: 38%;
-	right: 5%;
+	width: 30%;
 	bottom: 10%;
-	margin: 10px 10px;
-	border-radius: 10px;
-	padding: 20px 20px;
-	background-color: #fff;
+	top: 10%;
+	padding: 3%;
 }
 
-.hand {
-	margin-right: 1%;
-	margin-left: 1%;
-	width: 14%;
-	height: 100%;
-	src: "http://img4.wikia.nocookie.net/__cb20130830125537/smallville/images/thumb/0/06/Question-mark.jpg/480px-Question-mark.jpg";
+#time-container {
+	left: 66%;
+	right: 5%;
+	height: 12%;
+	top: 10%;
 }
 
 .messages {
