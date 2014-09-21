@@ -2,15 +2,15 @@
   "name": "rye50",
   "version": "0.0.1",
   "description": "play rye 50",
-  "repository" :
-	  { 
-	  	"type" : "git"
-	  , "url" : "https://github.com/Nosajool/Rye50.git"
-	  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nosajool/Rye50.git"
+  },
   "scripts": {
-    "start": "node index"
+    "start": "node server"
   },
   "dependencies": {
+    "collections": "^1.2.1",
     "express": "^4.9.4",
     "socket.io": "^1.1.0"
   }
