@@ -6,6 +6,7 @@ $('form').submit(function(){
 	if (message.val() != '') {
 		FB.api('/me', function(response){
 			socket.emit('chat message', message.val(), response.name, response.id);
+			socket.emit('checkValidity', message.val());
 			message.val('');			
 		});
 	}
@@ -17,8 +18,6 @@ socket.on('chat message', function(msg, name, color){
 	$('.messages').append(message);
 });
 
-socket.on('checkValidity', function(msg, isValid){
-	if (isValid == true){
+socket.on('output word', function(msg){
 	$("#word-list").append("<li style='color: "+color+"'>"+msg+"</li>");
-	}
 });

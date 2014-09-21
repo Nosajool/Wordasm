@@ -12,7 +12,7 @@ var dictionaryFile = require("./dictionary");
 var dictionary = dictionaryFile.dictionary();
 var dictionaryArr = dictionaryFile.dictionaryArr();
 var wordArr; 
-var inputArr;
+var inputArr = [];
 
 app.get('/', function(req, res){
   res.sendfile('index.html');
@@ -21,7 +21,7 @@ app.get('/', function(req, res){
 function randomWord(){
   var randNum = Math.floor(Math.random()*58110);
   var word = dictionaryArr[randNum];
-  while(word.length < 7){
+  while(word.length < 6 || word.length > 8){
     randNum = (randNum+1)%58110;
     word = dictionaryArr[randNum];
   }
@@ -143,21 +143,22 @@ io.on('connection', function(socket){
   });
 
   socket.on('checkValidity', function(msg){
+     console.log(inputArr);
+     var secondArr = realWord.split("");
+     console.log(wordArr);
      var msgArr = msg.split("");
      var firstCheck;
      var thirdCheck;
      var p;
-     var isValid;
-     inputArr.push(msg);
      //first Check: if the word is made from scrambled words
      for(var i=0;i<msgArr.length;i++){
-        p=wordArr.indexOf(msgArr[i]);
+        p=secondArr.indexOf(msgArr[i]);
         if (p==-1){
-          firstCheck = false;
-          break;
+          console.log("not from scrambled");
+          return;
         }
         else{
-          wordArr[p]="";
+          secondArr[p]="";
         }
         firstCheck = true;
      }   
@@ -166,18 +167,21 @@ io.on('connection', function(socket){
       var secondCheck = dictionary.has(msg); 
     }
     if (firstCheck == false || secondCheck ==false){
-      isValid = false;
+      console.log("not in dictionary and not scrambled");
+      return;
     }
     //third check: if the word already exists
     if (firstCheck == true && secondCheck == true){
       thirdCheck = inputArr.has(msg);
-      if (thirdCheck==false){
-        isValid = false;
-      } 
+      console.log(thirdCheck);
+      if (thirdCheck==true){
+        console.log("word already exists");
+        return;
+      }
+      inputArr.push(msg);
     }
-    isValid = true;
-    console.log(msg + "'s validity? = " + isValid);
-    io.emit('checkValidity', msg, isValid);
+    console.log(msg + "is valid");
+    io.emit('output word', msg);
   });
 });
 

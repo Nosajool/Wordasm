@@ -1,4 +1,4 @@
-var maxTime = 200;
+var maxTime = 400;
 var time = maxTime;
 
 setInterval(function () {
