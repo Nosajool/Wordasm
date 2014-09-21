@@ -1,6 +1,7 @@
 var countUsers = 0;
 
 socket.on('update userlist', function(users){
+	console.log("asdas");
 	$('.users').empty();
 	for(var i = 0; i < users.length; i++){
 		var message = "<li><span style = 'color:" + users[i].color + "'>" + users[i].name + "</span></li>";

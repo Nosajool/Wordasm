@@ -76,8 +76,6 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      $('#facebook-login-button').hide();
-      $('.facebook-login-message').delay(3000).fadeOut();
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
 
@@ -101,11 +99,8 @@
 
 function logOut(){
     console.log("logged out");
-    $('#facebook-login-button').show();
-    $('.facebook-login-message').fadeIn();
     document.getElementById('status').innerHTML =
         "You're successfully logged out!";
-    $('#facebook-logout-button').hide();
     console.log("Successfully logged out: "+ name);
     socket.emit('user logout', name, id);
     FB.logout(function(response) {
